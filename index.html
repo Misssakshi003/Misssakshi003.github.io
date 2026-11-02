@@ -1,0 +1,603 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sakshi Tapare, AI &amp; Data Engineer</title>
+<meta name="description" content="AI &amp; Data Engineer in Navi Mumbai. ML pipelines, LLM and RAG systems, ETL workflows, and production AI on AWS.">
+<meta name="author" content="Sakshi Tapare">
+<meta property="og:title" content="Sakshi Tapare, AI &amp; Data Engineer">
+<meta property="og:description" content="ML pipelines, LLM and RAG systems, ETL workflows. Production AI on AWS.">
+<meta property="og:type" content="profile">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   Tokens
+   ============================================================ */
+:root{
+  --bg:#0b0b0c;
+  --bg-2:#0f0f11;
+  --ink:#ffffff;          /* full white: headings and anything emphatic */
+  --ink-dim:#dcdad6;      /* body copy, near white and clearly readable */
+  --ink-faint:#adaaa5;    /* dates, stacks, small caps labels */
+  --rule:rgba(255,255,255,.17);
+  --rule-soft:rgba(255,255,255,.10);
+
+  --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+  --sans:"DM Sans",system-ui,-apple-system,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,monospace;
+
+  --measure:64ch;
+  --ease:cubic-bezier(.22,.68,.24,1);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font:300 18.5px/1.74 var(--sans);
+  letter-spacing:.005em;
+  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:1px solid var(--ink);outline-offset:4px}
+
+.wrap{width:min(1120px,100% - 56px);margin-inline:auto}
+
+/* ---- type scale ---------------------------------------------------- */
+.display{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2.5rem,8.2vw,6.6rem);
+  line-height:1.04;letter-spacing:-.025em;
+  white-space:nowrap;          /* the name stays on one line at every width */
+}
+.display em{font-style:italic;letter-spacing:-.01em}
+h2{
+  font-family:var(--serif);font-weight:400;
+  font-size:clamp(2rem,4.4vw,3.1rem);
+  line-height:1.08;letter-spacing:-.02em;
+}
+h3{font-family:var(--sans);font-weight:500;font-size:1.14rem;letter-spacing:-.005em}
+p{max-width:var(--measure)}
+
+.label{
+  font-family:var(--mono);font-size:.72rem;font-weight:400;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);
+}
+.label i{font-style:normal;color:var(--ink-dim)}
+
+/* ============================================================
+   Header
+   ============================================================ */
+header{
+  position:fixed;inset:0 0 auto 0;z-index:60;
+  border-bottom:1px solid transparent;
+  transition:background .4s var(--ease),border-color .4s,backdrop-filter .4s;
+}
+header.stuck{background:rgba(11,11,12,.72);backdrop-filter:blur(18px) saturate(150%);border-bottom-color:var(--rule-soft)}
+.bar{display:flex;align-items:center;justify-content:flex-end;gap:34px;height:86px}
+nav.menu{display:flex;align-items:center;gap:34px}
+nav.menu a{
+  font-size:.91rem;font-weight:400;color:var(--ink-dim);
+  position:relative;padding:4px 0;transition:color .25s;
+}
+nav.menu a::after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:right;
+  transition:transform .35s var(--ease);
+}
+nav.menu a:hover{color:var(--ink)}
+nav.menu a:hover::after{transform:scaleX(1);transform-origin:left}
+.burger{display:none;width:44px;height:44px;background:none;border:0;cursor:pointer;position:relative}
+.burger span{position:absolute;left:12px;width:20px;height:1px;background:var(--ink);transition:transform .35s var(--ease)}
+.burger span:first-child{top:19px}.burger span:last-child{top:25px}
+.burger.open span:first-child{transform:translateY(3px) rotate(45deg)}
+.burger.open span:last-child{transform:translateY(-3px) rotate(-45deg)}
+
+/* ============================================================
+   Links: understated, no candy pills
+   ============================================================ */
+.ln{
+  position:relative;display:inline-flex;align-items:center;gap:9px;
+  font-size:.97rem;font-weight:400;color:var(--ink-dim);padding-bottom:5px;
+  transition:color .3s,gap .3s var(--ease);
+}
+.ln::after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease);
+}
+.ln:hover{color:var(--ink);gap:13px}
+.ln:hover::after{transform:scaleX(1);transform-origin:left}
+.ln svg{width:14px;height:14px;opacity:.6}
+.ln-row{display:flex;flex-wrap:wrap;gap:14px 34px;margin-top:44px}
+
+/* ============================================================
+   Hero
+   ============================================================ */
+.hero{padding:200px 0 104px;min-height:100svh;display:flex;align-items:center}
+.role{
+  margin-top:26px;font-family:var(--mono);font-size:.82rem;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);
+}
+.lede{margin-top:30px;font-size:1.15rem;color:var(--ink-dim);font-weight:300}
+.lede p + p{margin-top:19px}
+
+/* metrics: hairline row, serif numerals */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1px;
+  margin-top:72px;background:var(--rule-soft);border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+.metric{background:var(--bg);padding:26px 4px 24px}
+.metric b{display:block;font-family:var(--serif);font-weight:400;font-size:2.5rem;line-height:1;letter-spacing:-.02em}
+.metric span{display:block;margin-top:10px;font-size:.85rem;color:var(--ink-faint);letter-spacing:.01em}
+
+/* ============================================================
+   Sections
+   ============================================================ */
+section{padding:clamp(76px,8.5vw,116px) 0}
+.sec-head{display:grid;gap:16px;margin-bottom:54px;max-width:var(--measure)}
+.sec-head p{color:var(--ink-dim);font-size:1.11rem}
+.rule{height:1px;background:var(--rule-soft);margin:0}
+
+/* ---- panels: hairline-divided blocks, used by skills and credentials ---- */
+.panels{display:grid;gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft)}
+.panels--4{grid-template-columns:repeat(auto-fit,minmax(min(100%,238px),1fr))}
+.panels--5{grid-template-columns:repeat(auto-fit,minmax(min(100%,196px),1fr))}
+.panel{background:var(--bg);padding:30px 28px;transition:background .35s var(--ease)}
+.panel:hover{background:var(--bg-2)}
+.panel > h3{font-family:var(--mono);font-size:.71rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-faint);font-weight:400;margin-bottom:20px}
+.panel ul{list-style:none;display:grid;gap:12px}
+.panel li{font-size:1.01rem;color:var(--ink-dim)}
+.panel li.row{display:flex;justify-content:space-between;gap:20px;align-items:baseline;
+  padding-bottom:12px;border-bottom:1px solid var(--rule-soft)}
+.panel li.row:last-child{border-bottom:0;padding-bottom:0}
+.panel li.row em{font-style:normal;font-family:var(--mono);font-size:.71rem;letter-spacing:.08em;
+  color:var(--ink-faint);white-space:nowrap}
+.edu{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px 40px}
+.edu b{display:block;font-family:var(--serif);font-weight:400;font-size:1.55rem;letter-spacing:-.01em}
+.edu span{display:block;margin-top:7px;font-size:.97rem;color:var(--ink-faint)}
+.edu .marks{font-family:var(--serif);font-size:1.75rem;line-height:1;text-align:right}
+.edu .marks small{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink-faint);margin-top:9px}
+
+/* ---- experience ---- */
+.role-item{display:grid;grid-template-columns:200px 1fr;gap:14px 44px;
+  padding:38px 0;border-top:1px solid var(--rule-soft)}
+.role-item:last-child{border-bottom:1px solid var(--rule-soft)}
+.role-when{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-faint);padding-top:7px;line-height:1.9}
+.role-when span{display:block;color:var(--ink-faint);opacity:.7}
+.role-head{margin-bottom:18px}
+.role-head h3{display:inline}
+.role-head .org{font-family:var(--serif);font-style:italic;font-size:1.22rem;margin-left:4px}
+.role-body{list-style:none;display:grid;gap:11px;max-width:var(--measure)}
+.role-body li{position:relative;padding-left:22px;color:var(--ink-dim);font-size:1.06rem}
+.role-body li::before{content:"";position:absolute;left:3px;top:.72em;width:3px;height:3px;border-radius:50%;background:var(--ink-faint)}
+
+/* ---- projects ---- */
+.proj{display:grid;grid-template-columns:200px 1fr;gap:16px 44px;
+  padding:40px 0;border-top:1px solid var(--rule-soft);transition:background .4s var(--ease)}
+.proj:last-child{border-bottom:1px solid var(--rule-soft)}
+.proj:hover{background:linear-gradient(90deg,rgba(255,255,255,.03),transparent 70%)}
+.proj-when{font-family:var(--mono);font-size:.76rem;letter-spacing:.1em;color:var(--ink-faint);padding-top:10px}
+.proj h3{font-family:var(--serif);font-weight:400;font-size:1.72rem;letter-spacing:-.015em;line-height:1.15;margin-bottom:18px}
+.proj ul{list-style:none;display:grid;gap:11px;max-width:var(--measure);margin-bottom:24px}
+.proj li{position:relative;padding-left:22px;color:var(--ink-dim);font-size:1.06rem}
+.proj li::before{content:"";position:absolute;left:3px;top:.72em;width:3px;height:3px;border-radius:50%;background:var(--ink-faint)}
+.stack{font-family:var(--mono);font-size:.75rem;letter-spacing:.07em;color:var(--ink-faint);line-height:2}
+
+/* ---- in progress: visibly lighter weight than shipped work ---- */
+.building{margin-top:58px;padding-top:34px;border-top:1px solid var(--rule-soft)}
+.building > .label{display:block;margin-bottom:24px}
+.building .panels--3{grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr))}
+.building h4{font-family:var(--serif);font-weight:400;font-size:1.22rem;letter-spacing:-.01em;margin-bottom:11px}
+.building p{font-size:1rem;color:var(--ink-dim);margin-bottom:16px}
+.building .stack{font-size:.73rem}
+
+/* ---- contact ---- */
+.closing{text-align:center;padding-block:clamp(86px,10vw,130px)}
+.closing h2{font-size:clamp(2.4rem,6.4vw,4.6rem);margin-bottom:26px}
+.closing p{margin:0 auto 52px;color:var(--ink-dim)}
+.closing .ln-row{justify-content:center;margin-top:0}
+
+footer{border-top:1px solid var(--rule-soft);padding:36px 0}
+.foot{display:flex;flex-wrap:wrap;gap:16px 30px;align-items:center;justify-content:space-between;
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+.foot nav{display:flex;gap:26px}
+.foot a:hover{color:var(--ink)}
+
+/* ---- reveal ---- */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media(max-width:860px){
+  .role-item,.proj{grid-template-columns:1fr;gap:12px}
+  .edu{flex-direction:column;align-items:flex-start}
+  .edu .marks{text-align:left}
+  .role-when,.proj-when{padding-top:0}
+  .role-when span{display:inline;margin-left:8px}
+}
+@media(max-width:720px){
+  .wrap{width:min(1120px,100% - 36px)}
+  body{font-size:17.5px}
+  .burger{display:block}
+  nav.menu{
+    position:absolute;inset:86px 0 auto 0;flex-direction:column;align-items:flex-start;gap:0;
+    padding:10px 28px 28px;background:rgba(11,11,12,.97);backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--rule-soft);
+    visibility:hidden;opacity:0;transform:translateY(-10px);
+    transition:opacity .3s,transform .3s var(--ease),visibility .3s;
+  }
+  nav.menu.open{visibility:visible;opacity:1;transform:none}
+  nav.menu a{width:100%;padding:16px 0;font-size:1.05rem;color:var(--ink);border-bottom:1px solid var(--rule-soft)}
+  nav.menu a::after{display:none}
+  .hero{padding:140px 0 90px;min-height:auto}
+  .ln-row{gap:14px 24px}
+  .metrics{grid-template-columns:repeat(2,1fr);margin-top:60px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .rv{opacity:1;transform:none}
+}
+@media print{
+  header,.ln-row,.closing .ln-row{display:none!important}
+  body{background:#fff;color:#000;font-size:11pt}
+  section{padding:18px 0;break-inside:avoid}
+  .metric b,.display,h2,.proj h3,.edu b{color:#000}
+  .panels,.panel{background:#fff;border-color:#ccc}
+}
+</style>
+</head>
+<body>
+
+<header id="bar">
+  <div class="wrap bar">
+    <nav class="menu" id="menu">
+      <a href="#skills">Skills</a>
+      <a href="#work">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#credentials">Credentials</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="wrap">
+    <h1 class="display">Sakshi <em>Tapare</em></h1>
+    <p class="role">AI &amp; Data Engineer, Navi Mumbai</p>
+    <div class="lede">
+      <p>
+        I am an AI and Data Engineer based in Navi Mumbai, currently building production
+        systems at K.B. Ajmera. My work sits at the boundary between machine learning and
+        data infrastructure. I design the ingestion and transformation layers that feed the
+        models, deploy the models themselves, and write the backend services that expose
+        them to real users.
+      </p>
+      <p>
+        Over nearly three years I have shipped retrieval augmented generation systems
+        backed by vector stores, natural language query interfaces over production
+        databases, event driven automation on n8n, and ETL pipelines sustaining tens of
+        thousands of records a day, most of it running on AWS. I care about the parts
+        that never get demonstrated: schema design, query performance, pipelines that
+        can be safely re run, and systems that still behave six months after launch.
+      </p>
+    </div>
+
+    <div class="ln-row">
+      <a class="ln" href="mailto:taparesakshi@gmail.com">
+        taparesakshi@gmail.com
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="ln" href="Sakshi-Tapare-Resume.pdf" download>
+        Curriculum vitae
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v12m0 0l-4.5-4.5M12 16l4.5-4.5M5 19h14"/></svg>
+      </a>
+      <a class="ln" href="https://linkedin.com/in/sakshi-tapare" target="_blank" rel="noopener">
+        LinkedIn
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+      <a class="ln" href="https://github.com/Misssakshi003" target="_blank" rel="noopener">
+        GitHub
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17L17 7M9 7h8v8"/></svg>
+      </a>
+    </div>
+
+    <div class="metrics">
+      <div class="metric"><b>50K+</b><span>Records processed daily</span></div>
+      <div class="metric"><b>70%</b><span>Less manual query time</span></div>
+      <div class="metric"><b>3&times;</b><span>Faster query performance</span></div>
+      <div class="metric"><b>100+</b><span>Engineers trained</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SKILLS ========== -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label"><i>01</i>&nbsp;&nbsp;Capabilities</span>
+      <h2>The stack I build with.</h2>
+      <p>From the storage layer underneath to the model on top, and the pipelines that move data between them.</p>
+    </div>
+
+    <div class="panels panels--5 rv">
+      <div class="panel">
+        <h3>Languages</h3>
+        <ul><li>Python</li><li>SQL</li><li>JavaScript</li><li>HTML and CSS</li></ul>
+      </div>
+      <div class="panel">
+        <h3>AI &amp; Machine Learning</h3>
+        <ul><li>PyTorch</li><li>TensorFlow</li><li>Scikit Learn</li><li>Hugging Face</li><li>LangChain</li><li>MCP</li><li>RAG Systems</li><li>LLMs</li><li>Prompt Engineering</li><li>AI Agents</li><li>NLP</li><li>OpenCV</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Data Engineering</h3>
+        <ul><li>ETL Pipelines</li><li>Pandas</li><li>NumPy</li><li>SQLAlchemy</li><li>Schema Design</li><li>Query Optimisation</li><li>ChromaDB</li><li>Vector Databases</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Cloud &amp; Automation</h3>
+        <ul><li>AWS</li><li>Lambda</li><li>API Gateway</li><li>n8n</li><li>FastAPI</li><li>REST APIs</li><li>WebSockets</li><li>Docker</li><li>MLOps</li><li>Git</li><li>Tally Integration</li></ul>
+      </div>
+      <div class="panel">
+        <h3>Visualisation</h3>
+        <ul><li>Power BI</li><li>Tableau</li><li>Plotly</li><li>Streamlit</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXPERIENCE ========== -->
+<section id="work">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label"><i>02</i>&nbsp;&nbsp;Experience</span>
+      <h2>Where I've shipped.</h2>
+    </div>
+
+    <article class="role-item rv">
+      <div class="role-when">Jul 2025 to Present<span>Mumbai, India</span></div>
+      <div>
+        <div class="role-head"><h3>Senior Data Engineer / AI Engineer</h3><span class="org">K.B. Ajmera</span></div>
+        <ul class="role-body">
+          <li>Designed and deployed backend data pipelines sustaining 50,000+ records a day, automating inventory and invoice workflows across n8n and Python.</li>
+          <li>Restructured database schemas and deployed ML components on AWS, taking query performance up threefold.</li>
+          <li>Built a natural language SQL interface combining intent detection with fuzzy entity resolution over the SQLAlchemy ORM, serving real time product search and invoice filtering and cutting manual query time by 70%.</li>
+          <li>Connected the in house order system to Tally, mapping order form data across so sales records and accounts reconcile without manual re entry.</li>
+          <li>Automated payment reminder workflows that track outstanding invoices and issue scheduled follow ups, removing the manual chasing cycle.</li>
+          <li>Developed a bill of quantities generator producing itemised quantity and cost breakdowns from project inputs.</li>
+          <li>Built a virtual try on feature for a client fashion storefront, compositing garment imagery onto customer photographs so shoppers preview fit before purchase.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="role-item rv">
+      <div class="role-when">Jan 2025 to Jun 2025<span>Mumbai, India</span></div>
+      <div>
+        <div class="role-head"><h3>Executive Data Analyst</h3><span class="org">Pentagon Systems</span></div>
+        <ul class="role-body">
+          <li>Developed end to end ETL pipelines automating extraction, transformation and load across heterogeneous sources.</li>
+          <li>Built interactive Power BI dashboards over the resulting models, cutting stakeholder reporting time by 60%.</li>
+          <li>Ran exploratory analysis and predictive modelling on AWS hosted analytics infrastructure.</li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="role-item rv">
+      <div class="role-when">Jan 2024 to Dec 2024<span>Mumbai, India</span></div>
+      <div>
+        <div class="role-head"><h3>Application Specialist</h3><span class="org">MIT Technology</span></div>
+        <ul class="role-body">
+          <li>Trained 100+ learners across Python, SQL, machine learning, Tableau and Power BI through a project led curriculum.</li>
+          <li>Mentored NLP and computer vision capstones, covering feature engineering, model evaluation and deployment.</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label"><i>03</i>&nbsp;&nbsp;Selected work</span>
+      <h2>Things I've built.</h2>
+      <p>Each one shipped end to end, from the data layer and model through to the interface and deployment.</p>
+    </div>
+
+    <article class="proj rv">
+      <div class="proj-when">Oct 2026</div>
+      <div>
+        <h3>Automated Product Image Pipeline</h3>
+        <ul>
+          <li>Event driven n8n workflow triggered on inbound mail matching a subject filter, routing every attached document into an agent step with no manual handling.</li>
+          <li>Extracts the embedded images from each document and passes them through Gemini for enhancement and quality correction before they are released downstream.</li>
+          <li>Writes the processed assets into Shopify through its Admin API, resolving each image to the correct product by its unique code so the catalogue stays in sync unattended.</li>
+        </ul>
+        <p class="stack">n8n · Gemini · Gmail · Shopify API · Python</p>
+      </div>
+    </article>
+    <article class="proj rv">
+      <div class="proj-when">Feb 2026</div>
+      <div>
+        <h3>Medha Voice Assistant</h3>
+        <ul>
+          <li>Browser based voice agent with streaming speech to text through Sarvam AI over a WebSocket channel, speech synthesis on the return path, and Claude driving the reasoning.</li>
+          <li>Per session conversation state for multi turn context, plus a LangChain agent loop that selects between web search and Wikipedia retrieval at run time.</li>
+          <li>FastAPI service underneath, separated into clear layers, with a custom chat client and full documentation.</li>
+        </ul>
+        <p class="stack">Python · FastAPI · Sarvam AI · Claude API · LangChain · WebSockets</p>
+      </div>
+    </article>
+    <article class="proj rv">
+      <div class="proj-when">Dec 2025</div>
+      <div>
+        <h3>DataViz Studio</h3>
+        <ul>
+          <li>Dashboard builder that infers column types from an uploaded CSV, Excel, JSON or PDF and generates a complete dashboard in a single pass across 25 chart types and KPI tiles.</li>
+          <li>Statistical layer covering outlier detection by interquartile range and Z score, interactive pivot aggregation, and What If simulation over user set parameters.</li>
+          <li>Five domain templates spanning sales, HR, marketing and finance, with serialisable configurations and export to HTML, PDF and PNG.</li>
+        </ul>
+        <p class="stack">Python · Streamlit · Plotly · Pandas · Pillow · ReportLab</p>
+      </div>
+    </article>
+    <article class="proj rv">
+      <div class="proj-when">Oct 2025</div>
+      <div>
+        <h3>Sakha, a Sanskrit Motivational Chatbot</h3>
+        <ul>
+          <li>Retrieval augmented chatbot over a ChromaDB vector store, embedding a Sanskrit shloka corpus with Sentence Transformers for semantic retrieval.</li>
+          <li>Sentiment classification stage that reads the emotional state of the query and conditions both which passages are retrieved and how the response is framed.</li>
+          <li>Generation served by Groq for low latency inference, fronted by Streamlit.</li>
+        </ul>
+        <p class="stack">Python · ChromaDB · Sentence Transformers · Groq · Streamlit</p>
+      </div>
+    </article>
+    <article class="proj rv">
+      <div class="proj-when">May 2025</div>
+      <div>
+        <h3>Conversational AI for SQL Inventory Search</h3>
+        <ul>
+          <li>Natural language interface that classifies query intent and resolves entity names against the live schema with fuzzy string matching.</li>
+          <li>Compiles the result into SQL through the SQLAlchemy ORM, keeping queries parameterised and the mapping resilient to schema changes.</li>
+          <li>Serves inventory lookups, invoice filtering and product search, running in production at K.B. Ajmera.</li>
+        </ul>
+        <p class="stack">Python · SQLAlchemy · Fuzzy Matching · NLP</p>
+      </div>
+    </article>
+
+    <div class="building rv">
+      <span class="label"><i>03b</i>&nbsp;&nbsp;Currently building</span>
+      <div class="panels panels--3">
+
+        <div class="panel">
+          <h4>Inventory MCP Server</h4>
+          <p>Exposing a warehouse database to any Model Context Protocol client as a small set
+             of typed, read only tools, so the model selects between product search, stock
+             lookup and invoice retrieval rather than composing arbitrary SQL.</p>
+          <p class="stack">Python · MCP SDK · SQLAlchemy</p>
+        </div>
+
+        <div class="panel">
+          <h4>Bedrock Document Intelligence</h4>
+          <p>Retrieval augmented question answering over a document corpus in S3, indexed
+             through a Bedrock Knowledge Base, served behind FastAPI with guardrails and
+             citations resolved back to the source passage.</p>
+          <p class="stack">AWS Bedrock · Knowledge Bases · FastAPI · S3</p>
+        </div>
+
+        <div class="panel">
+          <h4>CloudTrail Anomaly Watch</h4>
+          <p>Scoring rolling per principal API activity from CloudTrail logs with interquartile
+             range and Z score, flagging denied call spikes, unseen regions and first time API
+             usage, with alerting through SNS.</p>
+          <p class="stack">AWS CloudTrail · S3 · SNS · Pandas</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ========== CREDENTIALS ========== -->
+<section id="credentials">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="label"><i>04</i>&nbsp;&nbsp;Credentials</span>
+      <h2>Certifications &amp; education.</h2>
+    </div>
+
+    <div class="panels rv">
+      <div class="panel">
+        <h3>Certifications</h3>
+        <ul>
+          <li class="row"><span>Large Language Models</span><em>Google, 2025</em></li>
+          <li class="row"><span>Prompt Design in Vertex AI</span><em>Google, 2025</em></li>
+          <li class="row"><span>Data Visualization Processing</span><em>IBM</em></li>
+          <li class="row"><span>Python Full Course</span><em>CDAC, Grade A</em></li>
+          <li class="row"><span>Cybersecurity Fundamentals</span><em>Internship</em></li>
+        </ul>
+      </div>
+
+      <div class="panel">
+        <h3>Education</h3>
+        <div class="edu">
+          <div>
+            <b>B.Sc. Computer Science</b>
+            <span>Mumbai University, 2020 to 2023</span>
+          </div>
+          <p class="marks">9.9 / 9.6 / 9.4<small>Semester GPA</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact">
+  <div class="wrap closing rv">
+    <span class="label"><i>05</i>&nbsp;&nbsp;Contact</span>
+    <h2 style="margin-top:22px">Let's build<br><em style="font-style:italic">something good.</em></h2>
+    <p>I'm open to AI Engineer roles. Email reaches me fastest, and I answer everything.</p>
+    <div class="ln-row">
+      <a class="ln" href="mailto:taparesakshi@gmail.com">taparesakshi@gmail.com</a>
+      <a class="ln" href="tel:+918928619602">+91 89286 19602</a>
+      <a class="ln" href="https://linkedin.com/in/sakshi-tapare" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="ln" href="https://github.com/Misssakshi003" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© <span id="yr">2026</span> Sakshi Tapare</span>
+    <nav>
+      <a href="#skills">Skills</a><a href="#work">Experience</a>
+      <a href="#projects">Projects</a><a href="Sakshi-Tapare-Resume.pdf" download>CV</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---- sticky header ---- */
+const bar = document.getElementById('bar');
+const stick = () => bar.classList.toggle('stuck', scrollY > 14);
+stick(); addEventListener('scroll', stick, {passive:true});
+
+/* ---- mobile menu ---- */
+const burger = document.getElementById('burger'), menu = document.getElementById('menu');
+burger.onclick = () => {
+  const open = menu.classList.toggle('open');
+  burger.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+};
+menu.addEventListener('click', e => {
+  if (e.target.tagName === 'A') { menu.classList.remove('open'); burger.classList.remove('open'); }
+});
+
+/* ---- reveal on scroll ---- */
+const io = new IntersectionObserver(es => es.forEach((e, i) => {
+  if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), (i % 3) * 90); io.unobserve(e.target); }
+}), {threshold:.14, rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+</script>
+</body>
+</html>
