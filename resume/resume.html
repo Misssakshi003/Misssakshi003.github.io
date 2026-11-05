@@ -17,7 +17,7 @@ a{color:#111;text-decoration:none}
 h1{font-size:19pt;font-weight:700;letter-spacing:.01em;line-height:1.05}
 .contact{margin-top:4pt;font-size:8.6pt;color:#333}
 .contact span{white-space:nowrap}
-.sep{color:#999;padding:0 4pt}
+.sep{color:#999;padding:0 2.6pt}
 
 h2{
   font-size:8.5pt;font-weight:700;text-transform:uppercase;
@@ -53,7 +53,7 @@ li{margin-bottom:1.4pt}
 
 <h1>SAKSHI TAPARE</h1>
 <p class="contact">
-  Navi Mumbai, India<span class="sep">|</span><span>+91 8928619602</span><span class="sep">|</span><span>taparesakshi@gmail.com</span><span class="sep">|</span><span>linkedin.com/in/sakshi-tapare</span><span class="sep">|</span><span>github.com/Misssakshi003</span>
+  Navi Mumbai<span class="sep">|</span><span>+91 8928619602</span><span class="sep">|</span><span>taparesakshi@gmail.com</span><span class="sep">|</span><span><a href="https://misssakshi003.github.io">misssakshi003.github.io</a></span><span class="sep">|</span><span>linkedin.com/in/sakshi-tapare</span><span class="sep">|</span><span>github.com/Misssakshi003</span>
 </p>
 
 <h2>Summary</h2>
@@ -76,10 +76,11 @@ li{margin-bottom:1.4pt}
     <li>Architected and deployed backend data pipelines sustaining <b>50,000+ records a day</b>, replacing manual inventory and invoice handling with <b>n8n</b> and Python automation.</li>
     <li><b>Tripled query performance</b> by redesigning database schemas and deploying ML components on <b>AWS</b>.</li>
     <li>Cut manual query time <b>70%</b> with a <b>natural language SQL interface</b> built on intent detection and fuzzy entity resolution, now running in production.</li>
+    <li>Built an <b>MCP server</b> over the inventory database, exposing <b>typed read only tools</b> to any Model Context Protocol client.</li>
     <li>Integrated the in house order system with <b>Tally</b>, eliminating duplicate data entry and keeping sales records and accounts reconciled automatically.</li>
     <li>Automated receivables follow up, tracking outstanding invoices and issuing scheduled <b>payment reminders</b> that removed the manual chasing cycle.</li>
     <li>Built a <b>bill of quantities generator</b> turning project inputs into itemised quantity and cost breakdowns, removing a repetitive estimation task.</li>
-    <li>Shipped a <b>virtual try on</b> feature for a client fashion storefront, compositing garment imagery onto customer photographs so shoppers preview fit before buying.</li>
+    <li>Shipped a <b>virtual try on</b> feature for a client fashion storefront, compositing garment imagery onto customer photographs so shoppers preview fit.</li>
   </ul>
 </div>
 
@@ -106,8 +107,7 @@ li{margin-bottom:1.4pt}
   <div class="row"><h3>Inventory MCP Server on AWS</h3><span class="when">Nov 2026</span></div>
   <p class="stack">Python, MCP SDK, AWS Lambda, API Gateway, SQLAlchemy, JSON Schema</p>
   <ul>
-    <li><b>Model Context Protocol</b> server exposing a warehouse database to any MCP client as <b>typed read only tools</b>, not free form SQL.</li>
-    <li>Deployed on <b>AWS Lambda</b> behind API Gateway, with SQLAlchemy backed handlers returning structured payloads, keeping the server deterministic.</li>
+    <li><b>Model Context Protocol</b> server on <b>AWS Lambda</b> behind API Gateway, exposing a warehouse database as <b>typed read only tools</b> rather than free form SQL, with SQLAlchemy backed handlers returning structured payloads.</li>
   </ul>
 </div>
 

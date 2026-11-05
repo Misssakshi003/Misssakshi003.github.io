@@ -375,6 +375,7 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 0}
           <li>Designed and deployed backend data pipelines sustaining 50,000+ records a day, automating inventory and invoice workflows across n8n and Python.</li>
           <li>Restructured database schemas and deployed ML components on AWS, taking query performance up threefold.</li>
           <li>Built a natural language SQL interface combining intent detection with fuzzy entity resolution over the SQLAlchemy ORM, serving real time product search and invoice filtering and cutting manual query time by 70%.</li>
+          <li>Built an MCP server over the inventory database, exposing it to any Model Context Protocol client as a set of typed read only tools rather than an open SQL endpoint.</li>
           <li>Connected the in house order system to Tally, mapping order form data across so sales records and accounts reconcile without manual re entry.</li>
           <li>Automated payment reminder workflows that track outstanding invoices and issue scheduled follow ups, removing the manual chasing cycle.</li>
           <li>Developed a bill of quantities generator producing itemised quantity and cost breakdowns from project inputs.</li>
@@ -417,6 +418,17 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 0}
       <p>Each one shipped end to end, from the data layer and model through to the interface and deployment.</p>
     </div>
 
+    <article class="proj rv">
+      <div class="proj-when">Nov 2026</div>
+      <div>
+        <h3>Inventory MCP Server on AWS</h3>
+        <ul>
+          <li>Model Context Protocol server exposing a warehouse database to any MCP client as a small set of typed read only tools, so the model selects between product search, stock lookup and invoice retrieval rather than composing arbitrary SQL.</li>
+          <li>Deployed on AWS Lambda behind API Gateway, with SQLAlchemy backed handlers returning structured payloads, keeping the server deterministic and leaving narration to the client.</li>
+        </ul>
+        <p class="stack">Python · MCP SDK · AWS Lambda · API Gateway · SQLAlchemy · JSON Schema</p>
+      </div>
+    </article>
     <article class="proj rv">
       <div class="proj-when">Oct 2026</div>
       <div>
@@ -481,14 +493,6 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 0}
     <div class="building rv">
       <span class="label"><i>03b</i>&nbsp;&nbsp;Currently building</span>
       <div class="panels panels--3">
-
-        <div class="panel">
-          <h4>Inventory MCP Server</h4>
-          <p>Exposing a warehouse database to any Model Context Protocol client as a small set
-             of typed, read only tools, so the model selects between product search, stock
-             lookup and invoice retrieval rather than composing arbitrary SQL.</p>
-          <p class="stack">Python · MCP SDK · SQLAlchemy</p>
-        </div>
 
         <div class="panel">
           <h4>Bedrock Document Intelligence</h4>
