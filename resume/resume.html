@@ -104,6 +104,16 @@ li{margin-bottom:1.4pt}
 <h2>Projects</h2>
 
 <div class="proj">
+  <div class="row"><h3>Local Multi Agent System on Ollama</h3><span class="when">Nov 2026</span></div>
+  <p class="stack">Python, Ollama, Qwen, Multi Agent Orchestration</p>
+  <ul>
+    <li><b>Multi agent system</b> running fully offline through <b>Ollama</b> with <b>Qwen</b> models, agents working over local folders so no file contents leave the machine.</li>
+    <li>Narrow single purpose agents handing off in sequence, keeping a small local model dependable where one long prompt would drift.</li>
+    <li>A <b>reviewer model</b> judging the output of both models and reconciling them into one answer, so a weak single pass never reaches the user.</li>
+  </ul>
+</div>
+
+<div class="proj">
   <div class="row"><h3>Inventory MCP Server on AWS</h3><span class="when">Nov 2026</span></div>
   <p class="stack">Python, MCP SDK, AWS Lambda, API Gateway, SQLAlchemy, JSON Schema</p>
   <ul>
@@ -115,7 +125,7 @@ li{margin-bottom:1.4pt}
   <div class="row"><h3>Automated Product Image Pipeline</h3><span class="when">Oct 2026</span></div>
   <p class="stack">n8n, Gemini, Gmail, Shopify Admin API, Python</p>
   <ul>
-    <li>Built an event driven <b>n8n</b> workflow triggered on inbound mail matching a subject filter, routing every attached document into an agent step with no manual handling.</li>
+    <li>Built an event driven <b>n8n</b> workflow triggered on inbound mail matching a subject filter, routing every attached document into an agent step unattended.</li>
     <li>Extracts embedded images from each document, enhances them through <b>Gemini</b>, then writes the assets into <b>Shopify</b> resolved to the correct product by its unique code.</li>
   </ul>
 </div>
@@ -135,15 +145,6 @@ li{margin-bottom:1.4pt}
   <ul>
     <li>Built a <b>retrieval augmented chatbot</b> over a <b>ChromaDB</b> vector store, embedding a Sanskrit shloka corpus with Sentence Transformers for semantic retrieval.</li>
     <li>Added a <b>sentiment classification</b> stage conditioning both which passages are retrieved and how the response is framed, with generation served by <b>Groq</b>.</li>
-  </ul>
-</div>
-
-<div class="proj">
-  <div class="row"><h3>Conversational AI for SQL Inventory Search</h3><span class="when">May 2025</span></div>
-  <p class="stack">Python, SQLAlchemy, Fuzzy Matching, NLP</p>
-  <ul>
-    <li>Built a <b>natural language interface</b> classifying query intent and resolving entity names against the live schema with <b>fuzzy string matching</b>.</li>
-    <li>Compiles to SQL through the <b>SQLAlchemy ORM</b>, keeping queries parameterised and the mapping resilient to schema changes; running in production at K.B. Ajmera.</li>
   </ul>
 </div>
 

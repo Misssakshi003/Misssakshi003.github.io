@@ -421,6 +421,19 @@ footer{border-top:1px solid var(--rule-soft);padding:36px 0}
     <article class="proj rv">
       <div class="proj-when">Nov 2026</div>
       <div>
+        <h3>Local Multi Agent System on Ollama</h3>
+        <ul>
+          <li>Multi agent system running entirely on the local machine through Ollama, with Qwen models doing the reasoning, so no file contents and no prompts leave the device.</li>
+          <li>Agents work directly over local folders, reading and organising what is already on disk rather than requiring a corpus to be uploaded somewhere first.</li>
+          <li>Each agent holds a narrow role and hands off to the next, which keeps a small local model dependable where a single long prompt would drift.</li>
+          <li>A reviewer model sits on top, judging the output of both models against each other and reconciling them into one answer, so a weak single pass never reaches the user.</li>
+        </ul>
+        <p class="stack">Python · Ollama · Qwen · Multi Agent Orchestration</p>
+      </div>
+    </article>
+    <article class="proj rv">
+      <div class="proj-when">Nov 2026</div>
+      <div>
         <h3>Inventory MCP Server on AWS</h3>
         <ul>
           <li>Model Context Protocol server exposing a warehouse database to any MCP client as a small set of typed read only tools, so the model selects between product search, stock lookup and invoice retrieval rather than composing arbitrary SQL.</li>
